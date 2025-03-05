@@ -30,6 +30,8 @@ router
 //New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
+router.get("/q", listingController.categoryListings);
+
 router
   .route("/:id")
   .get(wrapAsync(listingController.showListing))
