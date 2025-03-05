@@ -14,6 +14,24 @@ module.exports.renderNewForm = (req, res) => {
   res.render("listings/newform.ejs");
 };
 
+module.exports.categoryListings = async (req, res) => {
+  try {
+    let { category } = req.query;
+    console.log("Category Listings - Requested Category:", category); // Debug log
+    
+    let listingCategory = await Listing.find({ category: category });
+    
+    console.log("Category Listings:", listingCategory.length); // Debug log
+    console.log("Category Listings Details:", listingCategory.map(l => l.category)); // Debug log
+    
+    res.render("listings/Catergory", { listingCategory });
+  } catch (error) {
+    console.error("Error in categoryListings method:", error);
+    req.flash("error", "An error occurred while fetching category listings");
+    res.redirect("/listings");
+  }
+};
+
 module.exports.showListing = async (req, res) => {
   let { id } = req.params;
   let categoryFilter = req.query.category; 
