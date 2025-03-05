@@ -23,7 +23,7 @@ module.exports.categoryListings = async (req, res) => {
     
    
     
-    res.render("listings/Catergory", { listingCategory });
+    res.render("listings/catergory", { listingCategory });
   } catch (error) {
     console.error("Error in categoryListings method:", error);
     req.flash("error", "An error occurred while fetching category listings");
