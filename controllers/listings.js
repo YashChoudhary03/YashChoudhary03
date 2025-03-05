@@ -17,12 +17,11 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.categoryListings = async (req, res) => {
   try {
     let { category } = req.query;
-    console.log("Category Listings - Requested Category:", category); // Debug log
+  
     
     let listingCategory = await Listing.find({ category: category });
     
-    console.log("Category Listings:", listingCategory.length); // Debug log
-    console.log("Category Listings Details:", listingCategory.map(l => l.category)); // Debug log
+   
     
     res.render("listings/Catergory", { listingCategory });
   } catch (error) {
